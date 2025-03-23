@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIWI SHOP</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 상단 네비게이션 바 -->
+    <header>
+        <div class="logo">KIWI SHOP</div>
+        <input type="text" class="search-bar" placeholder="3월의 신발장 최대 80% 할인" id="searchInput">
+        <div class="icons">
+            <i class="fas fa-search" id="searchIcon"></i>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </header>
+
+    <!-- 검색 화면 -->
+    <div class="search-screen" id="searchScreen">
+        <input type="text" class="search-box" placeholder="검색어를 입력하세요">
+        <div class="ranking-list">
+            <h3>인기 상품 랭킹 5위</h3>
+            <ol>
+                <li>상품 1</li>
+                <li>상품 2</li>
+                <li>상품 3</li>
+                <li>상품 4</li>
+                <li>상품 5</li>
+            </ol>
+        </div>
+        <div class="close-btn" id="closeSearch">✖ 닫기</div>
+        <div class="home-btn" id="goHome" style="color: white; cursor: pointer; margin-top: 20px;">홈 화면으로 돌아가기</div>
+    </div>
+
+    <!-- 기본 홈 화면 -->
+    <div class="home-content" id="homeContent">
+        <nav class="category-menu">
+            <ul>
+                <li>추천</li>
+                <li>랭킹</li>
+                <li>세일</li>
+                <li>브랜드</li>
+                <li>신상</li>
+                <li>봄 신상</li>
+                <li>백앤슈즈</li>
+            </ul>
+        </nav>
+
+        <section class="main-banner">
+            <div class="banner-content">
+                <p>첫 구매 한정</p>
+                <h2>20% 쿠폰</h2>
+                <span>0원 웰컴딜까지</span>
+            </div>
+        </section>
+    </div>
+
+    <!-- 하단 네비게이션 바 -->
+    <footer>
+        <div class="nav-item"><i class="fas fa-th-large"></i><span>카테고리</span></div>
+        <div class="nav-item"><i class="fas fa-store"></i><span>스냅</span></div>
+        <div class="nav-item"><i class="fas fa-home"></i><span>홈</span></div>
+        <div class="nav-item"><i class="fas fa-heart"></i><span>좋아요</span></div>
+        <div class="nav-item"><i class="fas fa-user"></i><span>마이</span></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
