@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIWI SHOP</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* 상단 네비게이션 바 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            flex: 1;
+            margin: 0 10px;
+            padding: 5px;
+            border-radius: 20px;
+            border: none;
+            text-align: center;
+        }
+
+        .icons i {
+            font-size: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* 카테고리 메뉴 */
+        .category-menu {
+            background-color: white;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-top: 20px;
+        }
+
+        .category-menu ul {
+            display: flex;
+            list-style: none;
+            justify-content: space-between;
+        }
+
+        .category-menu li {
+            padding: 5px 10px;
+            font-size: 14px;
+            flex: 1;
+            text-align: center;
+        }
+
+        /* 메인 배너 */
+        .main-banner {
+            position: relative;
+            background-color: #ffffff;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .banner-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('kiwi1.jpg') no-repeat center center/cover;
+            opacity: 0.8;
+        }
+
+        .banner-content {
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        /* 가장 핫한 제품 섹션 */
+        .hot-products {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .hot-products h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .products-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .product-card {
+            width: 200px;
+            height: 300px;
+            background-color: #f8f8f8;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .product-info {
+            margin-top: 10px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .product-info p {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* 로그인 화면 스타일 */
+        .login-screen, .register-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box, .register-box {
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .login-box input, .register-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .login-box button, .register-box button {
+            padding: 10px;
+            width: 100%;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-box button:hover, .register-box button:hover {
+            background-color: #333;
+        }
+
+        .login-footer, .register-footer {
+            margin-top: 10px;
+        }
+
+        .login-footer a, .register-footer a {
+            color: gray;
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .login-footer a:hover, .register-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 20px;
+            color: black;
+            cursor: pointer;
+        }
+
+        /* 하단 네비게이션 바 */
+        footer {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .nav-item i {
+            display: block;
+            font-size: 18px;
+        }
+
+        .auth-buttons {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .auth-buttons button {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            color: black;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .auth-buttons button:hover {
+            text-decoration: underline;
+        }
+
+        .auth-buttons button:active {
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 바 -->
+    <header>
+        <div class="logo">KIWI SHOP</div>
+        <input type="text" class="search-bar" placeholder="정명고 학생 최대 10% 할인" id="searchInput">
+        <div class="icons">
+            <i class="fas fa-search" id="searchIcon"></i>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </header>
+
+    <!-- 기본 홈 화면 -->
+    <div class="home-content" id="homeContent">
+        <!-- 카테고리 메뉴 -->
+        <nav class="category-menu">
+            <ul>
+                <li><a href="#">추천</a></li>
+                <li><a href="#">랭킹</a></li>
+                <li><a href="#">세일</a></li>
+                <li><a href="#">브랜드</a></li>
+                <li><a href="#">신상</a></li>
+            </ul>
+        </nav>
+
+        <!-- 메인 배너 -->
+        <section class="main-banner">
+            <div class="banner-image"></div>
+            <div class="banner-content">
+                <p>아직 개발중</p>
+                <h2>다음에 오세요</h2>
+                <span>ㅠㅠㅠㅠ</span>
+            </div>
+        </section>
+
+        <!-- 가장 핫한 제품 섹션 -->
+        <section class="hot-products">
+            <h2>가장 핫한 제품</h2>
+            <div class="products-container">
+                <div class="product-card">
+                    <img src="hot product1.jpg" alt="제품 1">
+                    <div class="product-info">
+                        <h3>제품 1</h3>
+                        <p>₩50,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot product2.jpg" alt="제품 2">
+                    <div class="product-info">
+                        <h3>제품 2</h3>
+                        <p>₩70,000</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="hot product3.jpg" alt="제품 3">
+                    <div class="product-info">
+                        <h3>제품 3</h3>
+                        <p>₩90,000</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- 로그인 / 회원가입 버튼 -->
+    <div class="auth-buttons">
+        <button id="loginBtn">로그인</button>
+        <button id="signupBtn">회원가입</button>
+    </div>
+
+    <!-- 로그인 화면 -->
+    <div class="login-screen" id="loginScreen">
+        <div class="back-button" id="backBtn">&#8592;</div>
+        <div class="login-box">
+            <h2>로그인</h2>
+            <input type="text" placeholder="아이디" id="loginId">
+            <input type="password" placeholder="비밀번호" id="loginPassword">
+            <button id="loginSubmit">로그인</button>
+            <div class="login-footer">
+                <a href="#" id="goSignup">회원가입</a>
+                <a href="#">아이디 찾기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 회원가입 화면 -->
+    <div class="register-screen" id="registerScreen">
+        <div class="back-button" id="registerBackBtn">&#8592;</div>
+        <div class="register-box">
+            <h2>회원가입</h2>
+            <input type="text" id="registerName" placeholder="이름" required>
+            <input type="email" id="registerEmail" placeholder="이메일" required>
+            <input type="password" id="registerPassword" placeholder="비밀번호" required>
+            <button id="registerSubmit">회원가입</button>
+            <div class="register-footer">
+                <a href="#">아이디 찾기</a>
+                <a href="#" id="goLogin">로그인</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 네비게이션 바 -->
+    <footer>
+        <div class="nav-item"><i class="fas fa-th-large"></i><span>카테고리</span></div>
+        <div class="nav-item"><i class="fas fa-store"></i><span>스냅</span></div>
+        <div class="nav-item" id="homeNav"><i class="fas fa-home"></i><span>홈</span></div>
+        <div class="nav-item"><i class="fas fa-heart"></i><span>좋아요</span></div>
+        <div class="nav-item"><i class="fas fa-user"></i><span>마이</span></div>
+    </footer>
+
+    <script>
+        // 로그인 화면으로 이동
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            document.getElementById('homeContent').style.display = 'none';  // 홈 화면 숨기기
+            document.getElementById('loginScreen').style.display = 'flex';  // 로그인 화면 보이기
+        });
+
+        // 회원가입 화면으로 이동
+        document.getElementById('signupBtn').addEventListener('click', function() {
+            document.getElementById('homeContent').style.display = 'none';  // 홈 화면 숨기기
+            document.getElementById('registerScreen').style.display = 'flex';  // 회원가입 화면 보이기
+        });
+
+        // 뒤로가기 버튼 (로그인 화면)
+        document.getElementById('backBtn').addEventListener('click', function() {
+            document.getElementById('homeContent').style.display = 'block';  // 홈 화면 보이기
+            document.getElementById('loginScreen').style.display = 'none';  // 로그인 화면 숨기기
+        });
+
+        // 뒤로가기 버튼 (회원가입 화면)
+        document.getElementById('registerBackBtn').addEventListener('click', function() {
+            document.getElementById('homeContent').style.display = 'block';  // 홈 화면 보이기
+            document.getElementById('registerScreen').style.display = 'none';  // 회원가입 화면 숨기기
+        });
+
+        // 로그인 화면에서 회원가입 화면으로 이동
+        document.getElementById('goSignup').addEventListener('click', function() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('registerScreen').style.display = 'flex';
+        });
+
+        // 회원가입 화면에서 로그인 화면으로 이동
+        document.getElementById('goLogin').addEventListener('click', function() {
+            document.getElementById('registerScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+        });
+    </script>
+
+</body>
+</html>
